@@ -232,7 +232,7 @@ stack_pointers = {
 # # XXX Need to add support for Capstone in order to extract ARM and MIPS
 # XXX as the SVC code may vary.
 syscall_instructions = {
-    'amd64': ['int 0x80', 'syscall', 'sysenter'],
+    'amd64': ['int 0x80', 'syscall', 'sysenter', 'syscall ; ret'],
     'i386': ['int 0x80', 'syscall', 'sysenter'],
     'arm': ['svc 0'],
     'aarch64': ['svc 0'],

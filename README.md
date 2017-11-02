@@ -36,7 +36,7 @@ Most of the functionality of python3-pwntools is self-contained and Python-only.
 ```sh
 apt-get update
 apt-get install python3 python3-dev python3-pip git
-pip3 install --upgrade git+https://github.com/arthaud/python3-pwntools.git
+pip3 install --upgrade git+https://github.com/GrandathePanda/python3-pwntools.git
 ```
 
 However, some of the features (assembling/disassembling foreign architectures) require non-Python dependencies.  For more information, see the [complete installation instructions here](https://python3-pwntools.readthedocs.org/en/latest/install.html).

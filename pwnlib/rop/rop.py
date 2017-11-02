@@ -827,6 +827,7 @@ class ROP:
         int80 = re.compile(r'int +0x80')
         syscall = re.compile(r'^syscall$')
         sysenter = re.compile(r'^sysenter$')
+        syscallret = re.compile(r'^syscall ; ret$')
 
         #
         # Validation routine
@@ -839,7 +840,7 @@ class ROP:
         # True
         #
         valid = lambda insn: any(map(lambda pattern: pattern.match(insn),
-                                     [pop, add, ret, leave, int80, syscall, sysenter]))
+                                     [pop, add, ret, leave, int80, syscall, sysenter, syscallret]))
 
         #
         # Currently, ropgadget.args.Args() doesn't take any arguments, and pulls
@@ -880,7 +881,7 @@ class ROP:
             try:
                 sys.stdout = Wrapper(sys.stdout)
                 import ropgadget
-                sys.argv = ['ropgadget', '--binary', elf.path, '--only', 'sysenter|syscall|int|add|pop|leave|ret', '--nojop']
+                sys.argv = ['ropgadget', '--binary', elf.path, '--nojop']
                 args = ropgadget.args.Args().getArgs()
                 core = ropgadget.core.Core(args)
                 core.do_binary(elf.path)
